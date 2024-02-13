@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://usagif.com/wp-content/uploads/gify/cinnamoroll-hug-me-usagif.gif');
+            /* Cambia la imagen de fondo según tus preferencias */
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .proposal {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+        }
+
+        a,
+        button {
+            margin: 10px;
+            padding: 10px 15px;
+            /* Ajusta el tamaño del botón aquí */
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            /* Cambiado a inline-block */
+        }
+
+        #yesLink {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #noButton {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let noButtonClickCount = 0;
+
+            function moveButton() {
+                const button = document.getElementById('noButton');
+                const newX = Math.random() * (window.innerWidth - button.clientWidth);
+                const newY = Math.random() * (window.innerHeight - button.clientHeight);
+
+                button.style.position = 'absolute';
+                button.style.left = newX + 'px';
+                button.style.top = newY + 'px';
+
+                noButtonClickCount++;
+
+                if (noButtonClickCount >= 5) {
+                    changeBackground();
+                    noButtonClickCount = 0;
+                }
+            }
+
+            function changeBackground() {
+                const backgrounds = ['https://usagif.com/wp-content/uploads/gify/cinnamoroll-super-scared-usagif.gif', 'https://usagif.com/wp-content/uploads/gify/17-stitch-hard-crying-usagif.gif', 'https://usagif.com/wp-content/uploads/gify/cinnamoroll-sad-usagif.gif'];
+                const currentBackground = getCurrentBackground();
+                const nextBackgroundIndex = (backgrounds.indexOf(currentBackground) + 1) % backgrounds.length;
+                const nextBackground = backgrounds[nextBackgroundIndex];
+
+                document.body.style.backgroundImage = `url('${nextBackground}')`;
+            }
+
+            function getCurrentBackground() {
+                const currentBackground = document.body.style.backgroundImage;
+                return currentBackground.replace(/url\(['"]?(.*?)['"]?\)/, '$1');
+            }
+
+            document.getElementById('noButton').addEventListener('mouseover', moveButton);
+        });
+    </script>
+    <title>Propuesta de San Valentín</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="proposal">
+            <h2>¿Quieres ser mi San Valentín?</h2>
+            <a id="yesLink" href="otra_pagina.html">Sí</a>
+            <button id="noButton">No</button>
+        </div>
+    </div>
+</body>
+
+</html>
